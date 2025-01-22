@@ -1,6 +1,5 @@
 import pygame
 from pygame.locals import *
-
 import game
 import Utilities.button
 from Utilities.background import draw_background

@@ -17,7 +17,7 @@ class Button:
     def draw(self, color):
         pygame.draw.rect(self.screen, color, pygame.Rect(self.pos_x, self.pos_y, self.width, self.height), border_radius=(min(self.height, self.width) // 10))
         text_surface = self.font.render(self.text, True, (0, 0, 0))
-        self.screen.blit(text_surface, (self.pos_x + self.width // 2 - text_surface.get_width() // 2., self.pos_y + self.height // 2 - text_surface.get_height() // 2))
+        self.screen.blit(text_surface, (self.pos_x + self.width // 2 - text_surface.get_width() // 2, self.pos_y + self.height // 2 - text_surface.get_height() // 2))
 
     def action(self):
         if self.pressed and pygame.mouse.get_pressed(3)[0]:
