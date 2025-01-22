@@ -63,7 +63,7 @@ def draw_info(screen, level):
     elif level == 12:
         text_surface = font.render("12.Zbuduj sumator dwoch", True, (0, 0, 0))
         screen.blit(text_surface, (250, 150))
-        text_surface = font.render( "liczb binarnych cztero", True, (0, 0, 0))
+        text_surface = font.render( "liczb binarnych osmio", True, (0, 0, 0))
         screen.blit(text_surface, (250, 200))
         text_surface = font.render( "bitowych.", True, (0, 0, 0))
         screen.blit(text_surface, (250, 250))
