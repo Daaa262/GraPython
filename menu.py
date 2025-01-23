@@ -17,7 +17,7 @@ def go(screen):
             if event.type == QUIT:
                 pygame.quit()
 
-        draw_background(screen, 40)
+        draw_background(screen, 40, 0, 0)
 
         if button1.action():
             levelselect.go(screen)

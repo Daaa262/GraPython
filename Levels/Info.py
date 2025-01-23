@@ -25,21 +25,33 @@ def draw_info(screen, level):
         text_surface = font.render("zrodla zasilania.", True, (0, 0, 0))
         screen.blit(text_surface, (250, 200))
     elif level == 4:
-        text_surface = font.render("4.Zbuduj bramke OR.", True, (0, 0, 0))
+        text_surface = font.render("4.Umiesc zrodlo zasilania oraz", True, (0, 0, 0))
         screen.blit(text_surface, (250, 150))
+        text_surface = font.render("lampe,a nastepnie ja zapal.", True, (0, 0, 0))
+        screen.blit(text_surface, (250, 200))
     elif level == 5:
-        text_surface = font.render("5.Zbuduj bramke NOT.", True, (0, 0, 0))
+        text_surface = font.render("5.Zbuduj bramke OR.", True, (0, 0, 0))
         screen.blit(text_surface, (250, 150))
     elif level == 6:
-        text_surface = font.render("6.Zbuduj zegar,ktory zmienia", True, (0, 0, 0))
+        text_surface = font.render("6.Zbuduj bramke NOT.", True, (0, 0, 0))
+        screen.blit(text_surface, (250, 150))
+    elif level == 7:
+        text_surface = font.render("7.Zbuduj zegar,ktory zmienia", True, (0, 0, 0))
         screen.blit(text_surface, (250, 150))
         text_surface = font.render("stan co 1 krok.", True, (0, 0, 0))
         screen.blit(text_surface, (250, 200))
-    elif level == 7:
-        text_surface = font.render("7.Zbuduj bramke AND.", True, (0, 0, 0))
-        screen.blit(text_surface, (250, 150))
     elif level == 8:
-        text_surface = font.render("8.Zbuduj element,ktory", True, (0, 0, 0))
+        text_surface = font.render("8.Zbuduj bramke AND.", True, (0, 0, 0))
+        screen.blit(text_surface, (250, 150))
+    elif level == 9:
+        text_surface = font.render("9.Zbuduj element,ktory", True, (0, 0, 0))
+        screen.blit(text_surface, (250, 150))
+        text_surface = font.render("zapala lampe tylko,gdy", True, (0, 0, 0))
+        screen.blit(text_surface, (250, 200))
+        text_surface = font.render("dostanie sygnal 10110.", True, (0, 0, 0))
+        screen.blit(text_surface, (250, 250))
+    elif level == 10:
+        text_surface = font.render("10.Zbuduj element,ktory", True, (0, 0, 0))
         screen.blit(text_surface, (250, 150))
         text_surface = font.render("zmienia stan wyjscia", True, (0, 0, 0))
         screen.blit(text_surface, (250, 200))
@@ -47,28 +59,28 @@ def draw_info(screen, level):
         screen.blit(text_surface, (250, 250))
         text_surface = font.render("wejsciu pojawi sie sygnal.", True, (0, 0, 0))
         screen.blit(text_surface, (250, 300))
-    elif level == 9:
-        text_surface = font.render("9.Zbuduj bramke XOR.", True, (0, 0, 0))
-        screen.blit(text_surface, (250, 150))
-    elif level == 10:
-        text_surface = font.render("10.Zbuduj pelny sumator.", True, (0, 0, 0))
-        screen.blit(text_surface, (250, 150))
     elif level == 11:
-        text_surface = font.render("11.Zbuduj zegar na ktorym", True, (0, 0, 0))
+        text_surface = font.render("11.Zbuduj bramke XOR.", True, (0, 0, 0))
+        screen.blit(text_surface, (250, 150))
+    elif level == 12:
+        text_surface = font.render("12.Zbuduj pelny sumator.", True, (0, 0, 0))
+        screen.blit(text_surface, (250, 150))
+    elif level == 13:
+        text_surface = font.render("13.Zbuduj zegar na ktorym", True, (0, 0, 0))
         screen.blit(text_surface, (250, 150))
         text_surface = font.render("mozna ustawic czestotliwosc", True, (0, 0, 0))
         screen.blit(text_surface, (250, 200))
         text_surface = font.render("odpowiednio 1,2 i 4 kroki.", True, (0, 0, 0))
         screen.blit(text_surface, (250, 250))
-    elif level == 12:
-        text_surface = font.render("12.Zbuduj sumator dwoch", True, (0, 0, 0))
+    elif level == 14:
+        text_surface = font.render("14.Zbuduj sumator dwoch", True, (0, 0, 0))
         screen.blit(text_surface, (250, 150))
         text_surface = font.render( "liczb binarnych osmio", True, (0, 0, 0))
         screen.blit(text_surface, (250, 200))
         text_surface = font.render( "bitowych.", True, (0, 0, 0))
         screen.blit(text_surface, (250, 250))
-    elif level == 13:
-        text_surface = font.render("13.Zbuduj licznik,ktory", True, (0, 0, 0))
+    elif level == 15:
+        text_surface = font.render("15.Zbuduj licznik,ktory", True, (0, 0, 0))
         screen.blit(text_surface, (250, 150))
         text_surface = font.render("zwieksza liczbe na wyjsciu", True, (0, 0, 0))
         screen.blit(text_surface, (250, 200))
@@ -76,8 +88,8 @@ def draw_info(screen, level):
         screen.blit(text_surface, (250, 250))
         text_surface = font.render("wejsciu pojawi sie sygnal.", True, (0, 0, 0))
         screen.blit(text_surface, (250, 300))
-    elif level == 14:
-        text_surface = font.render("14.Zbuduj uklad ktory ma trzy", True, (0, 0, 0))
+    elif level == 16:
+        text_surface = font.render("16.Zbuduj uklad ktory ma trzy", True, (0, 0, 0))
         screen.blit(text_surface, (250, 150))
         text_surface = font.render("wejscia dwu bitowe i jedno", True, (0, 0, 0))
         screen.blit(text_surface, (250, 200))
@@ -85,13 +97,13 @@ def draw_info(screen, level):
         screen.blit(text_surface, (250, 250))
         text_surface = font.render("sygnal pojawi sie na wyjsciu.", True, (0, 0, 0))
         screen.blit(text_surface, (250, 300))
-    elif level == 15:
-        text_surface = font.render("15.Zbuduj uklad,ktory mnozy", True, (0, 0, 0))
+    elif level == 17:
+        text_surface = font.render("17.Zbuduj uklad,ktory mnozy", True, (0, 0, 0))
         screen.blit(text_surface, (250, 150))
         text_surface = font.render("trzy bitowe liczby binarne.", True, (0, 0, 0))
         screen.blit(text_surface, (250, 200))
-    elif level == 16:
-        text_surface = font.render("16.Zbuduj uklad,ktory dzieli", True, (0, 0, 0))
+    elif level == 18:
+        text_surface = font.render("18.Zbuduj uklad,ktory dzieli", True, (0, 0, 0))
         screen.blit(text_surface, (250, 150))
         text_surface = font.render("liczby 6 bitowe i podaje", True, (0, 0, 0))
         screen.blit(text_surface, (250, 200))

@@ -14,8 +14,8 @@ def go(screen):
     for i in range(6):
         buttons.append(Utilities.button.Button(screen, (i + 7).__str__(), "Fonts/GregorianFLF.ttf", i * 150 + 160, 300, 130, 130))
 
-    for i in range(4):
-        buttons.append(Utilities.button.Button(screen, (i + 13).__str__(), "Fonts/GregorianFLF.ttf", i * 200 + 235, 450, 130, 130))
+    for i in range(6):
+        buttons.append(Utilities.button.Button(screen, (i + 13).__str__(), "Fonts/GregorianFLF.ttf", i * 150 + 160, 450, 130, 130))
 
     back = Utilities.button.Button(screen, "Menu", "Fonts/Manolo.ttf", 350, 650, 500, 70)
 
@@ -24,7 +24,7 @@ def go(screen):
             if event.type == QUIT:
                 pygame.quit()
 
-        draw_background(screen, 40)
+        draw_background(screen, 40, 0, 0)
 
         for button in buttons:
             if button.action():
