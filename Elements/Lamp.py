@@ -1,14 +1,14 @@
 import pygame
 import pygame.gfxdraw
 
-class Source:
+class Lamp:
     def __init__(self, screen, pos_x, pos_y):
-        self.image0 = pygame.image.load("Textures/Źródło0.png")
-        self.image1 = pygame.image.load("Textures/Źródło1.png")
+        self.image0 = pygame.image.load("Textures/Lampa0.png")
+        self.image1 = pygame.image.load("Textures/Lampa1.png")
         self.screen = screen
         self.pos_x = pos_x
         self.pos_y = pos_y
-        self.state = 1
+        self.state = 0
 
     def draw(self, position_x, position_y):
         if self.state == 1:
