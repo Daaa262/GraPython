@@ -6,7 +6,7 @@ from Utilities import background
 import Utilities.button
 from Levels.Info import draw_info
 from Utilities.button import ToolbarButton
-from Elements import Lamp, Source
+from Elements import Wire, Lamp, Source, Transmitter
 
 pygame.font.init()
 
@@ -104,9 +104,17 @@ def go(screen, level):
     image = None
 
     elements = []
-    element_placed = False
+    element_update = False
 
-    source_clicked = False
+    something_clicked = False
+
+    start_wire = False
+    start_wire_x = 0
+    start_wire_y = 0
+    element_connected = None
+    joint_connected = None
+
+    wires = []
 
     while True:
         for event in pygame.event.get():
@@ -116,10 +124,12 @@ def go(screen, level):
                 if event.key == pygame.K_TAB and left_mouse_pressed is False:
                     position_x = 0
                     position_y = 0
-            if pygame.mouse.get_pressed(3)[0] and pygame.mouse.get_pos()[1] < 600:
-                if current_item is not None:
-                    if not element_placed:
-                        new_element_position = (pygame.mouse.get_pos()[0] + position_x) // 40, (pygame.mouse.get_pos()[1] + position_y) // 40
+
+        if pygame.mouse.get_pressed(3)[0] and pygame.mouse.get_pos()[1] < 600:
+            if current_item is not None:
+                if not element_update:
+                    new_element_position = (pygame.mouse.get_pos()[0] + position_x) // 40, (pygame.mouse.get_pos()[1] + position_y) // 40
+                    if current_item != 0:
                         element_can_be_placed = True
                         for element in elements:
                             if abs(element.pos_x - new_element_position[0]) <= 2 and abs(element.pos_y - new_element_position[1]) <= 2:
@@ -130,22 +140,52 @@ def go(screen, level):
                                 elements.append(Lamp.Lamp(screen, *new_element_position))
                             elif current_item == 2:
                                 elements.append(Source.Source(screen, *new_element_position))
-                            element_placed = True
-                elif not source_clicked:
+                            elif current_item == 3:
+                                elements.append(Transmitter.Transmitter(screen, *new_element_position))
+                            element_update = True
+                    else:
+                        for element in elements:
+                            if element.pos_x == new_element_position[0] and element.pos_y == new_element_position[1]:
+                                elements.remove(element)
+                                element_update = True
+                                break
+            elif not something_clicked:
+                for element in elements:
+                    if element.clicked(pygame.mouse.get_pos()[0] + position_x + offset_x , pygame.mouse.get_pos()[1] + position_y + offset_y) is not None:
+                        if element is element_connected and element.clicked(pygame.mouse.get_pos()[0] + position_x + offset_x , pygame.mouse.get_pos()[1] + position_y + offset_y) == joint_connected:
+                            break
+                        if start_wire:
+                            wires.append(Elements.Wire.Wire(start_wire_x, start_wire_y, pygame.mouse.get_pos()[0] + position_x + offset_x, pygame.mouse.get_pos()[1] + position_y + offset_y, element_connected, element, joint_connected, element.clicked(pygame.mouse.get_pos()[0] + position_x + offset_x , pygame.mouse.get_pos()[1] + position_y + offset_y)))
+                            start_wire = False
+                            element_connected = None
+                            joint_connected = None
+                            something_clicked = True
+                            break
+                        else:
+                            start_wire = True
+                            start_wire_x = pygame.mouse.get_pos()[0] + position_x + offset_x
+                            start_wire_y = pygame.mouse.get_pos()[1] + position_y + offset_y
+                            element_connected = element
+                            joint_connected = element.clicked(pygame.mouse.get_pos()[0] + position_x + offset_x , pygame.mouse.get_pos()[1] + position_y + offset_y)
+                            break
+                if not start_wire and not something_clicked:
                     for element in elements:
                         if type(element) is Elements.Source.Source:
                             if element.pos_x * 40 - 5 < pygame.mouse.get_pos()[0] + position_x + offset_x < element.pos_x * 40 + 45 and element.pos_y * 40 - 5 < pygame.mouse.get_pos()[1] + position_y + offset_y < element.pos_y * 40 + 45:
-                                element.state = (element.state + 1) % 2
-                                source_clicked = True
-                if drag_ready is True and not source_clicked:
-                    if not left_mouse_pressed:
-                        left_mouse_pressed = True
-                        pressed_x, pressed_y = pygame.mouse.get_pos()
-                    else:
-                        offset_x, offset_y = pressed_x - pygame.mouse.get_pos()[0], pressed_y - pygame.mouse.get_pos()[1]
+                                element.state[0] = (element.state[0] + 1) % 2
+                                element.state[1] = (element.state[1] + 1) % 2
+                                element.state[2] = (element.state[2] + 1) % 2
+                                element.state[3] = (element.state[3] + 1) % 2
+                                something_clicked = True
+            if drag_ready is True and not something_clicked:
+                if not left_mouse_pressed:
+                    left_mouse_pressed = True
+                    pressed_x, pressed_y = pygame.mouse.get_pos()
+                else:
+                    offset_x, offset_y = pressed_x - pygame.mouse.get_pos()[0], pressed_y - pygame.mouse.get_pos()[1]
 
-        if element_placed and not pygame.mouse.get_pressed(3)[0]:
-            element_placed = False
+        if element_update and not pygame.mouse.get_pressed(3)[0]:
+            element_update = False
 
         if left_mouse_pressed and not pygame.mouse.get_pressed(3)[0]:
             left_mouse_pressed = False
@@ -154,8 +194,8 @@ def go(screen, level):
             offset_x = 0
             offset_y = 0
 
-        if source_clicked and not pygame.mouse.get_pressed(3)[0]:
-            source_clicked = False
+        if something_clicked and not pygame.mouse.get_pressed(3)[0]:
+            something_clicked = False
 
         background.draw_background(screen, 40, position_x + offset_x, position_y + offset_y)
 
@@ -163,6 +203,10 @@ def go(screen, level):
             element.draw(position_x + offset_x, position_y + offset_y)
 
         if current_item is not None:
+            if pygame.mouse.get_pressed(3)[2]:
+                current_item = None
+                ToolbarButton.which_marked = None
+                ToolbarButton.which_pressed = None
             if current_item == 0:
                 for element in elements:
                     if element.pos_x == (pygame.mouse.get_pos()[0] + position_x) // 40 and element.pos_y == (pygame.mouse.get_pos()[1] + position_y) // 40:
@@ -190,6 +234,17 @@ def go(screen, level):
                 image.set_alpha(190)
                 screen.blit(image, pygame.Rect(pygame.Rect(element_position_x, element_position_y, image.get_rect()[2], image.get_rect()[3])))
                 image.set_alpha(255)
+
+        for wire in wires:
+            if wire.powered:
+                pygame.draw.line(screen, Color(0, 210, 0), (wire.pos_x1 - position_x - offset_x, wire.pos_y1 - position_y - offset_y), (wire.pos_x2 - position_x - offset_x, wire.pos_y2 - position_y - offset_y), width=3)
+            else:
+                pygame.draw.line(screen, Color(0, 0, 0), (wire.pos_x1 - position_x - offset_x, wire.pos_y1 - position_y - offset_y), (wire.pos_x2 - position_x - offset_x, wire.pos_y2 - position_y - offset_y), width=3)
+
+        if start_wire:
+            pygame.draw.line(screen, Color(0, 0, 0), (start_wire_x - position_x - offset_x, start_wire_y - position_y - offset_y), pygame.mouse.get_pos(), width=3)
+            if pygame.mouse.get_pressed(3)[2]:
+                start_wire = False
 
         pygame.draw.rect(screen, Color(0, 0, 0), pygame.Rect(0, 596, 1200, 204), 6)
         pygame.draw.line(screen, Color(0, 0, 0), (0, 697), (599, 697), 6)
@@ -220,6 +275,8 @@ def go(screen, level):
         if button_state is not None:
             drag_ready = False
         if button_state is True:
+            ToolbarButton.which_pressed = None
+            ToolbarButton.which_marked = None
             return None
 
         if level != 0:
@@ -245,7 +302,8 @@ def go(screen, level):
         if button_state is not None:
             drag_ready = False
         if button_state is True:
-            print("step")
+            for wire in wires:
+                wire.update()
 
         if not drag_ready and not pygame.mouse.get_pressed(3)[0] and not show_info and ToolbarButton.which_pressed is None:
             drag_ready = True
