@@ -25,10 +25,12 @@ def draw_info(screen, level):
         text_surface = font.render("zrodla zasilania.", True, (0, 0, 0))
         screen.blit(text_surface, (250, 200))
     elif level == 4:
-        text_surface = font.render("4.Umiesc zrodlo zasilania oraz", True, (0, 0, 0))
+        text_surface = font.render("4.Umiesc zrodlo zasilania", True, (0, 0, 0))
         screen.blit(text_surface, (250, 150))
-        text_surface = font.render("lampe,a nastepnie ja zapal.", True, (0, 0, 0))
+        text_surface = font.render("oraz lampe,a nastepnie", True, (0, 0, 0))
         screen.blit(text_surface, (250, 200))
+        text_surface = font.render("ja zapal.", True, (0, 0, 0))
+        screen.blit(text_surface, (250, 250))
     elif level == 5:
         text_surface = font.render("5.Zbuduj bramke OR.", True, (0, 0, 0))
         screen.blit(text_surface, (250, 150))

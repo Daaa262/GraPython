@@ -1,10 +1,10 @@
 import pygame
 import pygame.gfxdraw
 
-class Source:
+class Clock:
     def __init__(self, screen, pos_x, pos_y):
-        self.image0 = pygame.image.load("Textures/Źródło0.png")
-        self.image1 = pygame.image.load("Textures/Źródło1.png")
+        self.image0 = pygame.image.load("Textures/Zegar0.png")
+        self.image1 = pygame.image.load("Textures/Zegar1.png")
         self.screen = screen
         self.pos_x = pos_x
         self.pos_y = pos_y
@@ -15,9 +15,9 @@ class Source:
 
     def clicked(self, position_x, position_y):
         if self.pos_x * 40 - 5 + 17 < position_x < self.pos_x * 40 - 5 + 32 and self.pos_y * 40 - 5 - 8 < position_y < self.pos_y * 40 - 5 + 7:
-            return self.pos_x * 40 - 5 + 25, self.pos_y * 40 - 5, self, 0
+            return self.pos_x * 40 - 5 + 24, self.pos_y * 40 - 5, self, 0
         elif self.pos_x * 40 - 5 - 8 < position_x < self.pos_x * 40 - 5 + 7 and self.pos_y * 40 - 5 + 17 < position_y < self.pos_y * 40 - 5 + 32:
-            return self.pos_x * 40 - 5, self.pos_y * 40 - 5 + 25, self, 1
+            return self.pos_x * 40 - 5, self.pos_y * 40 - 5 + 24, self, 1
         elif self.pos_x * 40 - 5 + 18 < position_x < self.pos_x * 40 - 5 + 33 and self.pos_y * 40 - 5 + 43 < position_y < self.pos_y * 40 - 5 + 58:
             return self.pos_x * 40 - 5 + 25, self.pos_y * 40 - 5 + 50, self, 2
         elif self.pos_x * 40 - 5 + 43 < position_x < self.pos_x * 40 - 5 + 58 and self.pos_y * 40 - 5 + 18 < position_y < self.pos_y * 40 - 5 + 33:
@@ -32,6 +32,9 @@ class Source:
         if self.state == [1, 1, 1, 1]:
             for wire in self.wires_connected:
                 wire.powered = True
+            self.state = [0, 0, 0 ,0]
+        else:
+            self.state = [1, 1, 1, 1]
 
     def draw(self, position_x, position_y):
         on_screen_x = self.pos_x * 40 - 5 - position_x

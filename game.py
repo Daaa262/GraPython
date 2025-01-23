@@ -6,7 +6,7 @@ from Utilities import background
 import Utilities.button
 from Levels.Info import draw_info
 from Utilities.button import ToolbarButton
-from Elements import Wire, Lamp, Source, Transmitter, Transistor
+from Elements import Wire, Lamp, Source, Transmitter, Transistor, OR, NOT, AND, Clock, Switch, XOR, Adder, BigAdder, Counter, MUX
 
 pygame.font.init()
 
@@ -147,6 +147,26 @@ def go(screen, level):
                                 elements.append(Transmitter.Transmitter(screen, *new_element_position))
                             elif current_item == 4:
                                 elements.append(Transistor.Transistor(screen, *new_element_position))
+                            elif current_item == 5:
+                                elements.append(OR.OR(screen, *new_element_position))
+                            elif current_item == 6:
+                                elements.append(NOT.NOT(screen, *new_element_position))
+                            elif current_item == 7:
+                                elements.append(Clock.Clock(screen, *new_element_position))
+                            elif current_item == 8:
+                                elements.append(AND.AND(screen, *new_element_position))
+                            elif current_item == 9:
+                                elements.append(Switch.Switch(screen, *new_element_position))
+                            elif current_item == 10:
+                                elements.append(XOR.XOR(screen, *new_element_position))
+                            elif current_item == 11:
+                                elements.append(Adder.Adder(screen, *new_element_position))
+                            elif current_item == 12:
+                                elements.append(BigAdder.BigAdder(screen, *new_element_position))
+                            elif current_item == 13:
+                                elements.append(Counter.Counter(screen, *new_element_position))
+                            elif current_item == 14:
+                                elements.append(MUX.MUX(screen, *new_element_position))
                             element_update = True
                     else:
                         for element in elements:
@@ -298,7 +318,7 @@ def go(screen, level):
                 show_info = True
 
         if run_simulation:
-            if pygame.time.get_ticks() - last_step > 100:
+            if pygame.time.get_ticks() - last_step > 200:
                 last_step = pygame.time.get_ticks()
                 for element in elements:
                     element.read_input()

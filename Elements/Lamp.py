@@ -15,9 +15,9 @@ class Lamp:
 
     def clicked(self, position_x, position_y):
         if self.pos_x * 40 - 5 + 17 < position_x < self.pos_x * 40 - 5 + 32 and self.pos_y * 40 - 5 - 8 < position_y < self.pos_y * 40 - 5 + 7:
-            return self.pos_x * 40 - 5 + 24, self.pos_y * 40 - 5, self, 0
+            return self.pos_x * 40 - 5 + 25, self.pos_y * 40 - 5, self, 0
         elif self.pos_x * 40 - 5 - 8 < position_x < self.pos_x * 40 - 5 + 7 and self.pos_y * 40 - 5 + 17 < position_y < self.pos_y * 40 - 5 + 32:
-            return self.pos_x * 40 - 5, self.pos_y * 40 - 5 + 24, self, 1
+            return self.pos_x * 40 - 5, self.pos_y * 40 - 5 + 25, self, 1
         elif self.pos_x * 40 - 5 + 18 < position_x < self.pos_x * 40 - 5 + 33 and self.pos_y * 40 - 5 + 43 < position_y < self.pos_y * 40 - 5 + 58:
             return self.pos_x * 40 - 5 + 25, self.pos_y * 40 - 5 + 50, self, 2
         elif self.pos_x * 40 - 5 + 43 < position_x < self.pos_x * 40 - 5 + 58 and self.pos_y * 40 - 5 + 18 < position_y < self.pos_y * 40 - 5 + 33:
@@ -26,7 +26,7 @@ class Lamp:
             return None
 
     def read_input(self):
-        self.state = [0, 0, 0 , 0]
+        self.state = [0, 0, 0, 0]
         for wire in self.wires_connected:
             if wire.powered:
                 if wire.element1 == self:
