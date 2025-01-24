@@ -120,26 +120,12 @@ def draw_info(screen, level):
         screen.blit(text_surface, (250, 250))
 
 def availability(level):
-    if level == 4:
-        return [1, 1] + [-1] * 12
-    elif level == 5:
-        return [1, 2, -1] + [-1] * 11
-    elif level == 6:
-        return [1, 2, -1, 1, 0] + [-1] * 9
-    elif level == 7:
-        return [1, 1, -1, 1, 0, 0] + [-1] * 8
-    elif level == 8:
-        return [1, 2, -1, 1, 0, 1, 0] + [-1] * 7
-    elif level == 9:
-        return [1, 5, -1, 1, 0, 1, 0, 0] + [-1] * 6
-    elif level == 10:
-        #???
-        print("X")
-    elif level == 11:
-        return [1, 2, -1, 2, 0, 0, 0, 0, 0] + [-1] * 5
-    elif level == 12:
-        return [2, 3, -1, 2, 0, 0, 0, 0, 0] + [-1] * 5
-    return [-1] * 14
+    if level == 0:
+        return [-1] * 14
+    elif level == 4:
+        return [1, 1] + [0] * 12
+    else:
+        return [0] * 14
 
 def check_conditions(level, elements):
     if level == 1:
@@ -191,19 +177,25 @@ def check_conditions(level, elements):
 
 def setup(level, elements, wires, screen):
     if level == 1:
-        elements.append(Source.Source(screen, 14, 10))
+        elements.append(Source.Source(screen, 14, 10, False))
         elements[0].state = [0, 0, 0, 0]
-        elements.append(Lamp.Lamp(screen, 14, 4))
+        elements.append(Lamp.Lamp(screen, 14, 4, False))
         wires.append(Wire.Wire(14 * 40 - 5 + 25, 10 * 40 - 5, elements[0], 0, 14 * 40 - 5 + 25, 4 * 40 - 5 + 50, elements[1], 2))
         elements[0].wires_connected.append(wires[-1])
         elements[1].wires_connected.append(wires[-1])
     elif level == 2:
-        elements.append(Source.Source(screen, 14, 10))
+        elements.append(Source.Source(screen, 14, 10, False))
         elements[0].state = [0, 0, 0, 0]
-        elements.append(Lamp.Lamp(screen, 14, 4))
+        elements.append(Lamp.Lamp(screen, 14, 4, False))
     elif level == 3:
-        elements.append(Source.Source(screen, 14, 10))
+        elements.append(Source.Source(screen, 14, 10, False))
         elements[0].state = [0, 0, 0, 0]
-        elements.append(Lamp.Lamp(screen, 14, 4))
-        elements.append(Lamp.Lamp(screen, 11, 4))
-        elements.append(Lamp.Lamp(screen, 17, 4))
+        elements.append(Lamp.Lamp(screen, 14, 4, False))
+        elements.append(Lamp.Lamp(screen, 11, 4, False))
+        elements.append(Lamp.Lamp(screen, 17, 4, False))
+    elif level == 5:
+        elements.append(Source.Source(screen, 12, 10, False))
+        elements.append(Source.Source(screen, 16, 10, False))
+        elements[0].state = [0, 0, 0, 0]
+        elements[1].state = [0, 0, 0, 0]
+        elements.append(Lamp.Lamp(screen, 14, 4, False))

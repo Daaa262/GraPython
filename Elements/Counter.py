@@ -2,7 +2,7 @@ import pygame
 import pygame.gfxdraw
 
 class Counter:
-    def __init__(self, screen, pos_x, pos_y):
+    def __init__(self, screen, pos_x, pos_y, deletable):
         self.image = pygame.image.load("Textures/Licznik.png")
         self.screen = screen
         self.pos_x = pos_x
@@ -12,6 +12,7 @@ class Counter:
         self.joint1 = pygame.image.load("Textures/Złącze1.png")
         self.wires_connected = []
         self.change = False
+        self.deletable = deletable
 
     def clicked(self, position_x, position_y):
         for i in range(8):

@@ -23,74 +23,80 @@ def go(screen, level):
     next_level = Utilities.button.Button(screen, "Nastepny", "Fonts/Manolo.ttf", 1000, 515, 180, 50)
 
     toolbar_buttons = []
-    avaiable = availability(level)
+    available = availability(level)
 
     if level == 0 or level >= 4:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Usuń.png", 501, 701, 93, 93, 0, -1))
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Lampa1.png", 6, 602, 93, 93, 1, avaiable[0]))
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Źródło1.png", 6, 701, 93, 93, 2, avaiable[1]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 501, 701, 93, 93, 0, -1))
+
+    if available[0] != 0:
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Lampa1.png", 6, 602, 93, 93, 1, available[0]))
+    else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 6, 602, 93, 93, 1, -1))
+
+    if available[1] != 0:
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Źródło1.png", 6, 701, 93, 93, 2, available[1]))
+    else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 6, 701, 93, 93, 2, -1))
 
-    if avaiable[2] != 0:
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Przekaźnik.png", 105, 602, 93, 93, 3, avaiable[2]))
+    if available[2] != 0:
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Przekaźnik.png", 105, 602, 93, 93, 3, available[2]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 105, 602, 93, 93, 3, -1))
 
-    if avaiable[3] != 0:
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Tranzystor000.png", 105, 701, 93, 93, 4, avaiable[3]))
+    if available[3] != 0:
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Tranzystor000.png", 105, 701, 93, 93, 4, available[3]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 105, 701, 93, 93, 4, -1))
 
-    if avaiable[4] != 0:
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/NOT.png", 303, 701, 93, 93, 5, avaiable[4]))
+    if available[4] != 0:
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/NOT.png", 303, 701, 93, 93, 5, available[4]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 303, 701, 93, 93, 5, -1))
 
-    if avaiable[5] != 0:
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/AND.png", 303, 602, 93, 93, 6, avaiable[5]))
+    if available[5] != 0:
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/AND.png", 303, 602, 93, 93, 6, available[5]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 303, 602, 93, 93, 6, -1))
 
-    if avaiable[6] != 0:
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Pojedynczy.png", 204, 602, 93, 93, 7, avaiable[6]))
+    if available[6] != 0:
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Pojedynczy.png", 204, 602, 93, 93, 7, available[6]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 204, 602, 93, 93, 7, -1))
 
-    if avaiable[7] != 0:
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Zegar1.png", 501, 602, 93, 93, 8, avaiable[7]))
+    if available[7] != 0:
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Zegar1.png", 501, 602, 93, 93, 8, available[7]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 501, 602, 93, 93, 8, -1))
 
-    if avaiable[8] != 0:
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/XOR.png", 402, 602, 93, 93, 9, avaiable[8]))
+    if available[8] != 0:
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/XOR.png", 402, 602, 93, 93, 9, available[8]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 402, 602, 93, 93, 9, -1))
 
-    if avaiable[9] != 0:
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Multiplekser.png", 600, 602, 194, 192, 10, avaiable[11]))
+    if available[9] != 0:
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Multiplekser.png", 600, 602, 194, 192, 10, available[11]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 600, 602, 194, 192, 10, -1))
 
-    if avaiable[10] != 0:
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Sumator.png", 402, 701, 93, 93, 11, avaiable[10]))
+    if available[10] != 0:
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Sumator.png", 402, 701, 93, 93, 11, available[10]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 402, 701, 93, 93, 11, -1))
 
-    if avaiable[11] != 0:
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/DużySumator.png", 800, 602, 194, 192, 12, avaiable[13]))
+    if available[11] != 0:
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/DużySumator.png", 800, 602, 194, 192, 12, available[13]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 800, 602, 194, 192, 12, -1))
 
-    if avaiable[12] != 0:
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Włącznik.png", 204, 701, 93, 93, 13, avaiable[12]))
+    if available[12] != 0:
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Włącznik.png", 204, 701, 93, 93, 13, available[12]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 204, 701, 93, 93, 13, -1))
 
-    if avaiable[13] != 0:
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Licznik.png", 1000, 602, 194, 192, 14, avaiable[9]))
+    if available[13] != 0:
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Licznik.png", 1000, 602, 194, 192, 14, available[9]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 1000, 602, 194, 192, 14, -1))
 
@@ -149,41 +155,41 @@ def go(screen, level):
                             if abs(element.pos_x - new_element_position[0]) <= 2 and abs(element.pos_y - new_element_position[1]) <= 2:
                                 element_can_be_placed = False
                                 break
-                        if element_can_be_placed and toolbar_buttons[current_item].avaiable != 0:
+                        if element_can_be_placed and toolbar_buttons[current_item].available != 0:
                             if current_item == 1:
-                                elements.append(Lamp.Lamp(screen, *new_element_position))
+                                elements.append(Lamp.Lamp(screen, *new_element_position, True))
                             elif current_item == 2:
-                                elements.append(Source.Source(screen, *new_element_position))
+                                elements.append(Source.Source(screen, *new_element_position, True))
                             elif current_item == 3:
-                                elements.append(Transmitter.Transmitter(screen, *new_element_position))
+                                elements.append(Transmitter.Transmitter(screen, *new_element_position, True))
                             elif current_item == 4:
-                                elements.append(Transistor.Transistor(screen, *new_element_position))
+                                elements.append(Transistor.Transistor(screen, *new_element_position, True))
                             elif current_item == 5:
-                                elements.append(NOT.NOT(screen, *new_element_position))
+                                elements.append(NOT.NOT(screen, *new_element_position, True))
                             elif current_item == 6:
-                                elements.append(AND.AND(screen, *new_element_position))
+                                elements.append(AND.AND(screen, *new_element_position, True))
                             elif current_item == 7:
-                                elements.append(Single.Single(screen, *new_element_position))
+                                elements.append(Single.Single(screen, *new_element_position, True))
                             elif current_item == 8:
-                                elements.append(Clock.Clock(screen, *new_element_position))
+                                elements.append(Clock.Clock(screen, *new_element_position, True))
                             elif current_item == 9:
-                                elements.append(XOR.XOR(screen, *new_element_position))
+                                elements.append(XOR.XOR(screen, *new_element_position, True))
                             elif current_item == 10:
-                                elements.append(MUX.MUX(screen, *new_element_position))
+                                elements.append(MUX.MUX(screen, *new_element_position, True))
                             elif current_item == 11:
-                                elements.append(Adder.Adder(screen, *new_element_position))
+                                elements.append(Adder.Adder(screen, *new_element_position, True))
                             elif current_item == 12:
-                                elements.append(BigAdder.BigAdder(screen, *new_element_position))
+                                elements.append(BigAdder.BigAdder(screen, *new_element_position, True))
                             elif current_item == 13:
-                                elements.append(Switch.Switch(screen, *new_element_position))
+                                elements.append(Switch.Switch(screen, *new_element_position, True))
                             elif current_item == 14:
-                                elements.append(Counter.Counter(screen, *new_element_position))
-                            if toolbar_buttons[current_item].avaiable != -1:
-                                toolbar_buttons[current_item].avaiable -= 1
+                                elements.append(Counter.Counter(screen, *new_element_position, True))
+                            if toolbar_buttons[current_item].available != -1:
+                                toolbar_buttons[current_item].available -= 1
                             element_update = True
                     else:
                         for element in elements:
-                            if element.pos_x == new_element_position[0] and element.pos_y == new_element_position[1]:
+                            if element.deletable and element.pos_x == new_element_position[0] and element.pos_y == new_element_position[1]:
                                 wire_to_delete = []
                                 for wire in element.wires_connected:
                                     wire_to_delete.append(wire)
@@ -191,34 +197,34 @@ def go(screen, level):
                                     wire.element1.wires_connected.remove(wire)
                                     wire.element2.wires_connected.remove(wire)
                                     wires.remove(wire)
-                                if type(element) == Lamp.Lamp and toolbar_buttons[1].avaiable != -1:
-                                    toolbar_buttons[1].avaiable += 1
-                                elif type(element) == Source.Source and toolbar_buttons[2].avaiable != -1:
-                                    toolbar_buttons[2].avaiable += 1
-                                elif type(element) == Transmitter.Transmitter and toolbar_buttons[3].avaiable != -1:
-                                    toolbar_buttons[3].avaiable += 1
-                                elif type(element) == Transistor.Transistor and toolbar_buttons[4].avaiable != -1:
-                                    toolbar_buttons[4].avaiable += 1
-                                elif type(element) == Single.Single and toolbar_buttons[5].avaiable != -1:
-                                    toolbar_buttons[5].avaiable += 1
-                                elif type(element) == NOT.NOT and toolbar_buttons[6].avaiable != -1:
-                                    toolbar_buttons[6].avaiable += 1
-                                elif type(element) == Clock.Clock and toolbar_buttons[7].avaiable != -1:
-                                    toolbar_buttons[7].avaiable += 1
-                                elif type(element) == AND.AND and toolbar_buttons[8].avaiable != -1:
-                                    toolbar_buttons[8].avaiable += 1
-                                elif type(element) == Switch.Switch and toolbar_buttons[9].avaiable != -1:
-                                    toolbar_buttons[9].avaiable += 1
-                                elif type(element) == XOR.XOR and toolbar_buttons[10].avaiable != -1:
-                                    toolbar_buttons[10].avaiable += 1
-                                elif type(element) == Adder.Adder and toolbar_buttons[11].avaiable != -1:
-                                    toolbar_buttons[11].avaiable += 1
-                                elif type(element) == BigAdder.BigAdder and toolbar_buttons[12].avaiable != -1:
-                                    toolbar_buttons[12].avaiable += 1
-                                elif type(element) == Counter.Counter and toolbar_buttons[13].avaiable != -1:
-                                    toolbar_buttons[13].avaiable += 1
-                                elif type(element) == MUX.MUX and toolbar_buttons[14].avaiable != -1:
-                                    toolbar_buttons[14].avaiable += 1
+                                if type(element) == Lamp.Lamp and toolbar_buttons[1].available != -1:
+                                    toolbar_buttons[1].available += 1
+                                elif type(element) == Source.Source and toolbar_buttons[2].available != -1:
+                                    toolbar_buttons[2].available += 1
+                                elif type(element) == Transmitter.Transmitter and toolbar_buttons[3].available != -1:
+                                    toolbar_buttons[3].available += 1
+                                elif type(element) == Transistor.Transistor and toolbar_buttons[4].available != -1:
+                                    toolbar_buttons[4].available += 1
+                                elif type(element) == Single.Single and toolbar_buttons[5].available != -1:
+                                    toolbar_buttons[5].available += 1
+                                elif type(element) == NOT.NOT and toolbar_buttons[6].available != -1:
+                                    toolbar_buttons[6].available += 1
+                                elif type(element) == Clock.Clock and toolbar_buttons[7].available != -1:
+                                    toolbar_buttons[7].available += 1
+                                elif type(element) == AND.AND and toolbar_buttons[8].available != -1:
+                                    toolbar_buttons[8].available += 1
+                                elif type(element) == Switch.Switch and toolbar_buttons[9].available != -1:
+                                    toolbar_buttons[9].available += 1
+                                elif type(element) == XOR.XOR and toolbar_buttons[10].available != -1:
+                                    toolbar_buttons[10].available += 1
+                                elif type(element) == Adder.Adder and toolbar_buttons[11].available != -1:
+                                    toolbar_buttons[11].available += 1
+                                elif type(element) == BigAdder.BigAdder and toolbar_buttons[12].available != -1:
+                                    toolbar_buttons[12].available += 1
+                                elif type(element) == Counter.Counter and toolbar_buttons[13].available != -1:
+                                    toolbar_buttons[13].available += 1
+                                elif type(element) == MUX.MUX and toolbar_buttons[14].available != -1:
+                                    toolbar_buttons[14].available += 1
                                 elements.remove(element)
                                 element_update = True
                                 break
@@ -280,7 +286,7 @@ def go(screen, level):
                 ToolbarButton.which_pressed = None
             if current_item == 0:
                 for element in elements:
-                    if element.pos_x == (pygame.mouse.get_pos()[0] + position_x) // 40 and element.pos_y == (pygame.mouse.get_pos()[1] + position_y) // 40:
+                    if element.deletable and element.pos_x == (pygame.mouse.get_pos()[0] + position_x) // 40 and element.pos_y == (pygame.mouse.get_pos()[1] + position_y) // 40:
                         element_position_x = (40 - image.get_rect()[2]) // 2 - position_x % 40 + (pygame.mouse.get_pos()[0] + position_x % 40) // 40 * 40
                         element_position_y = (40 - image.get_rect()[3]) // 2 - position_y % 40 + (pygame.mouse.get_pos()[1] + position_y % 40) // 40 * 40
                         screen.blit(image, pygame.Rect(pygame.Rect(element_position_x, element_position_y, image.get_rect()[2], image.get_rect()[3])))
@@ -368,7 +374,7 @@ def go(screen, level):
                 for element in elements:
                     element.set_output()
 
-        if not run_simulation and (level == 0 or level >= 8):
+        if not run_simulation and (level == 0 or level >= 9):
             button_state = start.action()
             if button_state is not None:
                 drag_ready = False

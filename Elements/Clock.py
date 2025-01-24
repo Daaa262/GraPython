@@ -2,7 +2,7 @@ import pygame
 import pygame.gfxdraw
 
 class Clock:
-    def __init__(self, screen, pos_x, pos_y):
+    def __init__(self, screen, pos_x, pos_y, deletable):
         self.image0 = pygame.image.load("Textures/Zegar0.png")
         self.image1 = pygame.image.load("Textures/Zegar1.png")
         self.screen = screen
@@ -12,6 +12,7 @@ class Clock:
         self.joint0 = pygame.image.load("Textures/Złącze0.png")
         self.joint1 = pygame.image.load("Textures/Złącze1.png")
         self.wires_connected = []
+        self.deletable = deletable
 
     def clicked(self, position_x, position_y):
         if self.pos_x * 40 - 5 + 17 < position_x < self.pos_x * 40 - 5 + 32 and self.pos_y * 40 - 5 - 8 < position_y < self.pos_y * 40 - 5 + 7:

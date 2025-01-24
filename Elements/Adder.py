@@ -2,7 +2,7 @@ import pygame
 import pygame.gfxdraw
 
 class Adder:
-    def __init__(self, screen, pos_x, pos_y):
+    def __init__(self, screen, pos_x, pos_y, deletable):
         self.image = pygame.image.load("Textures/Sumator.png")
         self.screen = screen
         self.pos_x = pos_x
@@ -11,6 +11,7 @@ class Adder:
         self.joint0 = pygame.image.load("Textures/Złącze0.png")
         self.joint1 = pygame.image.load("Textures/Złącze1.png")
         self.wires_connected = []
+        self.deletable = deletable
 
     def clicked(self, position_x, position_y):
         if self.pos_x * 40 - 5 + 6 < position_x < self.pos_x * 40 - 5 + 21 and self.pos_y * 40 - 5 + 43 < position_y < self.pos_y * 40 - 5 + 58:
