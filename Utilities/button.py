@@ -1,6 +1,9 @@
 import pygame
 from pygame.locals import *
 
+from Levels.Info import availability
+
+
 class Button:
     any_pressed = False
 
@@ -50,8 +53,9 @@ class ToolbarButton:
     which_pressed = None
     which_marked = None
 
-    def __init__(self, screen, image_path, pos_x, pos_y, width, height, number):
+    def __init__(self, screen, font_path, image_path, pos_x, pos_y, width, height, number, avaiable):
         self.screen = screen
+        self.font = pygame.font.Font(font_path, 13)
         self.image = pygame.image.load(image_path)
         if image_path == "Textures/Locked.png":
             self.locked = True
@@ -62,10 +66,19 @@ class ToolbarButton:
         self.width = width
         self.height = height
         self.number = number
+        self.avaiable = avaiable
 
     def draw(self, color):
         pygame.draw.rect(self.screen, color, pygame.Rect(self.pos_x, self.pos_y, self.width, self.height))
         self.screen.blit(self.image, pygame.Rect(self.pos_x + self.width // 2 - self.image.get_rect()[2] // 2, self.pos_y + self.height // 2 - self.image.get_rect()[3] // 2, self.width, self.height))
+        if self.avaiable != -1:
+            if self.avaiable == 0:
+                pygame.draw.rect(self.screen, Color(255, 0, 0), pygame.Rect(self.pos_x + self.width - 20, self.pos_y + self.height - 20, 20, 20), 3)
+                text_surface = self.font.render(self.avaiable.__str__(), True, (255, 0, 0))
+            else:
+                pygame.draw.rect(self.screen, Color(0, 0, 0), pygame.Rect(self.pos_x + self.width - 20, self.pos_y + self.height - 20, 20, 20), 3)
+                text_surface = self.font.render(self.avaiable.__str__(), True, (0, 0, 0))
+            self.screen.blit(text_surface, (self.pos_x + self.width - 20 + 7, self.pos_y + self.height - 20 + 3))
 
     def action(self):
         if self.locked:

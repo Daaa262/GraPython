@@ -28,7 +28,11 @@ def go(screen):
 
         for button in buttons:
             if button.action():
-                game.go(screen, int(button.text))
+                level = int(button.text)
+                while game.go(screen, level):
+                    level += 1
+                    if level == 19:
+                        break
 
         if back.action():
             return None
