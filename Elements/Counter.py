@@ -36,11 +36,11 @@ class Counter:
         if self.change:
             self.change = False
             for i in range(8):
-                if self.state[i] == 0:
-                    self.state[i] = 1
+                if self.state[7 - i] == 0:
+                    self.state[7 - i] = 1
                     break
                 else:
-                    self.state[i] = 0
+                    self.state[7 - i] = 0
 
         for i in range(8):
             for wire in self.wires_connected:

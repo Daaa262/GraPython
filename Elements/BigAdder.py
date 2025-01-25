@@ -31,16 +31,15 @@ class BigAdder:
                 for i in range(8):
                     if wire.element1 == self and wire.joint1 == i or wire.element2 == self and wire.joint2 == i:
                         self.state[i] = 1
-        print(self.state)
 
     def set_output(self):
         sum = 0
         for i in range(4):
-            sum += 2 ** i * self.state[i]
-            sum += 2 ** i * self.state[i + 4]
+            sum += 2 ** i * self.state[3 - i]
+            sum += 2 ** i * self.state[7 - i]
         for i in range(5):
             if sum & 1 == 1:
-                self.state[i + 8] = 1
+                self.state[12 - i] = 1
             sum >>= 1
         for wire in self.wires_connected:
             for i in range(5):

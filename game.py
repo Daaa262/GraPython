@@ -76,7 +76,7 @@ def go(screen, level):
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 402, 602, 93, 93, 9, -1))
 
     if available[9] != 0:
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Multiplekser.png", 600, 602, 194, 192, 10, available[11]))
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Multiplekser.png", 600, 602, 194, 192, 10, available[9]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 600, 602, 194, 192, 10, -1))
 
@@ -86,7 +86,7 @@ def go(screen, level):
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 402, 701, 93, 93, 11, -1))
 
     if available[11] != 0:
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/DużySumator.png", 800, 602, 194, 192, 12, available[13]))
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/DużySumator.png", 800, 602, 194, 192, 12, available[11]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 800, 602, 194, 192, 12, -1))
 
@@ -96,7 +96,7 @@ def go(screen, level):
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 204, 701, 93, 93, 13, -1))
 
     if available[13] != 0:
-        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Licznik.png", 1000, 602, 194, 192, 14, available[9]))
+        toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Licznik.png", 1000, 602, 194, 192, 14, available[13]))
     else:
         toolbar_buttons.append(ToolbarButton(screen, "Fonts/Manolo.ttf", "Textures/Locked.png", 1000, 602, 194, 192, 14, -1))
 
@@ -144,6 +144,14 @@ def go(screen, level):
                 if event.key == pygame.K_TAB and left_mouse_pressed is False:
                     position_x = 0
                     position_y = 0
+                if event.key == pygame.K_r:
+                    available = availability(level)
+                    for i in range(14):
+                        if available[i] != 0 and available[i] != -1:
+                            toolbar_buttons[i + 1].available = available[i]
+                    elements = []
+                    wires = []
+                    setup(level, elements, wires, screen)
 
         if pygame.mouse.get_pressed(3)[0] and pygame.mouse.get_pos()[1] < 600:
             if current_item is not None:
@@ -205,25 +213,25 @@ def go(screen, level):
                                     toolbar_buttons[3].available += 1
                                 elif type(element) == Transistor.Transistor and toolbar_buttons[4].available != -1:
                                     toolbar_buttons[4].available += 1
-                                elif type(element) == Single.Single and toolbar_buttons[5].available != -1:
+                                elif type(element) == NOT.NOT and toolbar_buttons[5].available != -1:
                                     toolbar_buttons[5].available += 1
-                                elif type(element) == NOT.NOT and toolbar_buttons[6].available != -1:
+                                elif type(element) == AND.AND and toolbar_buttons[6].available != -1:
                                     toolbar_buttons[6].available += 1
-                                elif type(element) == Clock.Clock and toolbar_buttons[7].available != -1:
+                                elif type(element) == Single.Single and toolbar_buttons[7].available != -1:
                                     toolbar_buttons[7].available += 1
-                                elif type(element) == AND.AND and toolbar_buttons[8].available != -1:
+                                elif type(element) == Clock.Clock and toolbar_buttons[8].available != -1:
                                     toolbar_buttons[8].available += 1
-                                elif type(element) == Switch.Switch and toolbar_buttons[9].available != -1:
+                                elif type(element) == XOR.XOR and toolbar_buttons[9].available != -1:
                                     toolbar_buttons[9].available += 1
-                                elif type(element) == XOR.XOR and toolbar_buttons[10].available != -1:
+                                elif type(element) == MUX.MUX and toolbar_buttons[10].available != -1:
                                     toolbar_buttons[10].available += 1
                                 elif type(element) == Adder.Adder and toolbar_buttons[11].available != -1:
                                     toolbar_buttons[11].available += 1
                                 elif type(element) == BigAdder.BigAdder and toolbar_buttons[12].available != -1:
                                     toolbar_buttons[12].available += 1
-                                elif type(element) == Counter.Counter and toolbar_buttons[13].available != -1:
+                                elif type(element) == Switch.Switch and toolbar_buttons[13].available != -1:
                                     toolbar_buttons[13].available += 1
-                                elif type(element) == MUX.MUX and toolbar_buttons[14].available != -1:
+                                elif type(element) == Counter.Counter and toolbar_buttons[14].available != -1:
                                     toolbar_buttons[14].available += 1
                                 elements.remove(element)
                                 element_update = True
@@ -406,7 +414,7 @@ def go(screen, level):
             if button_state is not None:
                 drag_ready = False
             if button_state is True:
-                if check_conditions(level, elements):
+                if check_conditions(level, elements, wires):
                     solved = True
 
         if solved:
