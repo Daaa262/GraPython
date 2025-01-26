@@ -150,6 +150,8 @@ def availability(level):
         return [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4] + [0] * 3
     elif level == 15:
         return [0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 2] + [0] * 2
+    elif level == 16:
+        return [0, 0, 3, 5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
     elif level == 17:
         return [0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 8, 0]
     else:
